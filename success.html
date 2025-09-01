@@ -88,6 +88,22 @@
     padding: 50px 0px 100px 0px;
   }
 
+  .back-btn{
+    display:block;
+    width:100%;
+    padding:12px;
+    background:var(--brand);
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+  }
+  .back-btn:hover{
+    filter:brightness(.95);
+  }
+
   a.link{
     color:var(--link);
     text-decoration:underline;
@@ -123,11 +139,14 @@
       <div class="head">
         Adatkezelési tájékoztató elfogadása
         <div class="sub">
-            2025
+            2025/26
         </div>
       </div>
-      <div class="success">
-        A művelet sikeres volt!
+      <div class="body">
+        <div class="success">
+          A művelet sikeres volt!
+        </div>
+        <button class="back-btn" onclick="window.location.href='.'">Kijelentkezés</button>
       </div>
 
     </div>
