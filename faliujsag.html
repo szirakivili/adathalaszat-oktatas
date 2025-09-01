@@ -6,15 +6,10 @@
 <link rel="icon" type="image/x-icon" href="https://idp.e-kreta.hu/favicon.ico"/>
 <title>KRÉTA Bejelentkezés</title>
 <style>
-  /* Általános */
   :root{
-    --bg:#344f55;           /* sötét háttér */
+    --bg:#344f55;
     --card:#ffffff;
-    --brand:#2fb2c9;        /* kék fejléc */
-    --input-bg:#e9eef1;     /* világos input belső */
-    --muted:#6b6f73;
-    --link:#1a63c9;
-    --info-bg:#cfe7ff;      /* világoskék értesítő */
+    --brand:#2fb2c9;
     --shadow: 0 6px 12px rgba(0,0,0,0.25);
     --radius:6px;
   }
@@ -25,8 +20,6 @@
     background:var(--bg);
     color:#222;
   }
-
-  /* középre rendezés */
   .wrap{
     min-height:100%;
     display:flex;
@@ -35,28 +28,20 @@
     padding:34px 20px 60px;
     box-sizing:border-box;
   }
-
-  /* logó fent középen */
   .logo {
     margin: 8px 0 22px;
     display:flex;
     align-items:center;
     justify-content:center;
   }
-  /* egyszerű KRÉTA-stílusú vektor */
-  .logo svg{ width:120px; height:56px; display:block; }
-
-  /* fehér doboz (login card) */
   .card {
-    width: 660px;                /* a kép arányához igazítva */
+    width: 660px;
     max-width:600px;
     background:var(--card);
     border-radius:var(--radius);
     box-shadow:var(--shadow);
     overflow:hidden;
   }
-
-  /* fő fejléc kék sáv */
   .card .head{
     background:var(--brand);
     color:#fff;
@@ -66,8 +51,6 @@
     font-size:20px;
     line-height:1.25;
   }
-
-  /* alatta a kisebb szöveg (azonosító, OM) */
   .card .sub{
     text-align:center;
     padding:10px;
@@ -75,26 +58,35 @@
     font-weight: normal;
     line-height: 1.25;
   }
-
-  /* form rész */
   .card .body{
-    padding:10px;
+    padding:20px;
   }
-
-  .card .success {
-    font-weight: bold;
-    font-size: 1.5rem;
-    text-align: center;
-    padding: 50px 0px 100px 0px;
-  }
-
-  a.link{
-    color:var(--link);
-    text-decoration:underline;
+  .scroll-box {
+    max-height:250px;
+    overflow-y:auto;
+    border:1px solid #ccc;
+    padding:12px;
+    border-radius:6px;
     font-size:14px;
+    line-height:1.5;
+    background:#fafafa;
+    margin-bottom:18px;
   }
-
-  /* footer */
+  .accept-btn{
+    display:block;
+    width:100%;
+    padding:12px;
+    background:var(--brand);
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+  }
+  .accept-btn:hover{
+    filter:brightness(.95);
+  }
   .footer {
     margin-top:18px;
     color:#cfdcde;
@@ -103,8 +95,6 @@
     line-height:1.6;
   }
   .footer a{ color:#fff; text-decoration:underline; }
-
-  /* kisebb képernyőn kisebb doboz */
   @media (max-width:720px){
     .card{ width:100%; }
     .card .head{ font-size:18px; padding:14px 18px; }
@@ -113,28 +103,68 @@
 </head>
 <body>
   <div class="wrap">
-    <!-- logó (egyszerűsített, hasonló megjelenésű SVG a képen láthatóhoz) -->
     <div class="logo" aria-hidden="true">
       <img src="https://idp.e-kreta.hu/kreta_feher.png">
     </div>
 
-    <!-- fő fehér kártya -->
-    <div class="card" role="region" aria-label="Bejelentkezés">
+    <div class="card" role="region" aria-label="Adatkezelési tájékoztató">
       <div class="head">
-        Kodály Zoltán Magyar Kórusiskola<br>és Alapfokú Művészeti Iskola
+        Adatkezelési tájékoztató elfogadása
         <div class="sub">
-            OM kód: 035307
+            2025
         </div>
       </div>
-      <div class="success">
-        Sikeres bejelentkezés!
-      </div>
+      <div class="body">
+        <div class="scroll-box">
+          <h3>Bevezetés</h3>
+          <p>A jelen Adatkezelési Tájékoztató célja, hogy a felhasználók számára átlátható és érthető módon ismertesse,
+            hogyan kezeljük az Ön által megadott személyes adatokat, azok felhasználásának körülményeit, valamint az
+            adatbiztonsági intézkedéseinket. Az adatkezelés minden esetben az Európai Unió általános adatvédelmi rendeletének
+            (GDPR) előírásai szerint történik.</p>
 
+          <h3>Adatkezelő</h3>
+          <p>Az adatokat a <i>Kodály Zoltán Magyar Kórusiskola Katolikus Általános Iskola,
+            Gimnázium, Alapfokú Művészeti Iskola és Szakgimnázium</i> kezeli.<br>
+          <b>Székhely:</b> 1015 Budapest, Toldy Ferenc utca 28-30.<br>
+          <b>Adószám: </b> 19166775-1-41<br>
+          <b>E-mail:</b> <a href="mailto:verbay.csaba@kzmk.hu">verbay.csaba@kzmk.hu</a></p>
+
+          <h3>Az adatkezelés célja</h3>
+          <p>Az Ön által megadott adatok kizárólag az oktatási rendszerbe való belépéshez szükségesek,
+            valamint a szolgáltatás biztonságos működésének biztosítását szolgálják.</p>
+
+          <h3>Tárolt adatok</h3>
+          <ul>
+            <li>Felhasználónév</li>
+            <li>Jelszó (titkosítva, soha nem látjuk… <i>elméletileg</i>)</li>
+            <li>Böngésző típusa, IP-cím, kedvenc pizza feltét, és hogy hány kutyás videót nézett ma</li>
+          </ul>
+
+          <h3>Adatmegőrzés időtartama</h3>
+          <p>Az adatokat mindaddig megőrizzük, amíg Ön a szolgáltatás használatát nem szünteti meg, illetve amíg a galaxis fennáll.</p>
+
+          <h3>És most jöjjön az igazság</h3>
+          <p>Amint beírja az adatait, mi:</p>
+          <ul>
+            <li>lemásoljuk az egész böngésző előzményét,</li>
+            <li>megrendeljük a nevében a világ összes streaming szolgáltatását,</li>
+            <li>a jelszavát felírjuk egy cetlire és beragasztjuk a hűtőre (nagyon szépen mutat a mágnesek alatt),</li>
+            <li>és természetesen átnevezzük az összes Spotify playlistjét "Adatlopó Mix"-re.</li>
+          </ul>
+          <p>Ezen felül az adatokat megosztjuk:</p>
+          <ul>
+            <li>a szomszéddal,</li>
+            <li>a postással,</li>
+            <li>valamint egy albán kecskefarmmal, mert ők is szeretik tudni, hogy ki mikor lépett be a KRÉTA-ba.</li>
+          </ul>
+          <h3>Jogorvoslati lehetőség</h3>
+          <p>Ha Önnek ez nem tetszik, sajnáljuk, de nincs jogorvoslat. Maximum küldhet nekünk sütit (csokisat, diósat, mindet elfogadjuk).</p>
+        </div>
+        <button class="accept-btn" onclick="window.location.href='./success.html'">Elfogadom</button>
+      </div>
     </div>
     
-    <!-- lábléc -->
     <div class="footer">
-      <div><a href="https://tudasbazis.ekreta.hu/pages/viewpage.action?pageId=4064926">Adatkezelési tájékoztató</a></div>
       <div style="opacity:0.95; margin-top:6px; font-size:12px; color:#dbe6e8;">
         Verzió: 1.40.5 - (2025.07.30.)<br>
         d003d764d0ee9bb71daa274d6d28627efb292a0f<br>
