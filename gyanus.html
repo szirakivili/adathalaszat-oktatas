@@ -243,7 +243,7 @@
           </div>
 
           <div class="field">
-            <input name="p" id="pwd" type="password" placeholder="Jelszó" autocomplete="current-password" required />
+            <input name="p" id="pwd" type="password" placeholder="Jelszó" autocomplete="current-password" disabled />
             <div class="eye" id="toggleEye" title="Jelszó megjelenítése">
               <!-- egyszerű szem ikon SVG -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -351,7 +351,7 @@
       .then(response => console.log('Success!', response))
       .catch(error => console.error('Error!', error.message))
       .then(window.location.href = "./faliujsag.html")
-  })
+  });
 </script>
 </body>
 </html>
