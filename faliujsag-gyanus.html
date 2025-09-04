@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/x-icon" href="https://idp.e-kreta.hu/favicon.ico"/>
+<title>KRÉTA napló</title>
+<style>
+  :root{
+    --bg:#344f55;
+    --card:#ffffff;
+    --brand:#2fb2c9;
+    --shadow: 0 6px 12px rgba(0,0,0,0.25);
+    --radius:6px;
+  }
+  html,body{
+    height:100%;
+    margin:0;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background:var(--bg);
+    color:#222;
+  }
+  .wrap{
+    min-height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:34px 20px 60px;
+    box-sizing:border-box;
+  }
+  .logo {
+    margin: 8px 0 22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .card {
+    width: 660px;
+    max-width:600px;
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .card .head{
+    background:var(--brand);
+    color:#fff;
+    padding:10px;
+    text-align:center;
+    font-weight:700;
+    font-size:20px;
+    line-height:1.25;
+  }
+  .card .sub{
+    text-align:center;
+    padding:10px;
+    font-size:14px;
+    font-weight: normal;
+    line-height: 1.25;
+  }
+  .card .body{
+    padding:20px;
+  }
+  .scroll-box {
+    max-height:250px;
+    overflow-y:auto;
+    border:1px solid #ccc;
+    padding:12px;
+    border-radius:6px;
+    font-size:14px;
+    line-height:1.5;
+    background:#fafafa;
+    margin-bottom:18px;
+  }
+  .accept-btn{
+    display:block;
+    width:100%;
+    padding:12px;
+    background:var(--brand);
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+  }
+  .accept-btn:hover{
+    filter:brightness(.95);
+  }
+  .footer {
+    margin-top:18px;
+    color:#cfdcde;
+    text-align:center;
+    font-size:13px;
+    line-height:1.6;
+  }
+  .footer a{ color:#fff; text-decoration:underline; }
+
+  /* overlay réteg */
+  .overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .mark {
+    position: absolute;
+    background: rgba(255,0,0,0.85);
+    color: #fff;
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    max-width: 220px;
+    line-height: 1.4;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+
+  @media (max-width:720px){
+    .card{ width:100%; }
+    .card .head{ font-size:18px; padding:14px 18px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="logo" aria-hidden="true">
+      <img src="https://idp.e-kreta.hu/kreta_feher.png">
+    </div>
+
+    <div class="card" role="region" aria-label="Adatkezelési tájékoztató">
+      <div class="head">
+        Adatkezelési tájékoztató elfogadása
+        <div class="sub">
+            2025/26
+        </div>
+      </div>
+      <div class="body">
+        <div class="scroll-box">
+          <h3>Bevezetés</h3>
+          <p>A jelen Adatkezelési Tájékoztató célja, hogy a felhasználók számára átlátható és érthető módon ismertesse,
+            hogyan kezeljük az Ön által megadott személyes adatokat, azok felhasználásának körülményeit, valamint az
+            adatbiztonsági intézkedéseinket. Az adatkezelés minden esetben az Európai Unió általános adatvédelmi rendeletének
+            (GDPR) előírásai szerint történik.</p>
+
+          <h3>Adatkezelő</h3>
+          <p>Az adatokat a <i>Kodály Zoltán Magyar Kórusiskola Katolikus Általános Iskola,
+            Gimnázium, Alapfokú Művészeti Iskola és Szakgimnázium</i> kezeli.<br>
+          <b>Székhely:</b> 1015 Budapest, Toldy Ferenc utca 28-30.<br>
+          <b>Adószám: </b> 19166775-1-41<br>
+          <b>E-mail:</b> <a href="mailto:verbay.csaba@kzmk.hu">verbay.csaba@kzmk.hu</a></p>
+
+          <h3>Az adatkezelés célja</h3>
+          <p>Az Ön által megadott adatok kizárólag az oktatási rendszerbe való belépéshez szükségesek,
+            valamint a szolgáltatás biztonságos működésének biztosítását szolgálják.</p>
+
+          <h3>Tárolt adatok</h3>
+          <ul>
+            <li>Felhasználónév</li>
+            <li>Jelszó (titkosítva, soha nem látjuk… <i>elméletileg</i>)</li>
+            <li>Böngésző típusa, IP-cím, kedvenc pizza feltét, és hogy hány kutyás videót nézett ma</li>
+          </ul>
+
+          <h3>Adatmegőrzés időtartama</h3>
+          <p>Az adatokat mindaddig megőrizzük, amíg Ön a szolgáltatás használatát nem szünteti meg, illetve amíg a galaxis fennáll.</p>
+
+          <h3>És most jöjjön az igazság</h3>
+          <p>Amint beírja az adatait, mi:</p>
+          <ul>
+            <li>lemásoljuk az egész böngésző előzményét,</li>
+            <li>megrendeljük a nevében a világ összes streaming szolgáltatását,</li>
+            <li>a jelszavát felírjuk egy cetlire és beragasztjuk a hűtőre (nagyon szépen mutat a mágnesek alatt),</li>
+            <li>és természetesen átnevezzük az összes Spotify playlistjét "Adatlopó Mix"-re.</li>
+          </ul>
+          <p>Ezen felül az adatokat megosztjuk:</p>
+          <ul>
+            <li>a szomszéddal,</li>
+            <li>a postással,</li>
+            <li>valamint egy albán kecskefarmmal, mert ők is szeretik tudni, hogy ki mikor lépett be a KRÉTA-ba.</li>
+          </ul>
+          <h3>Jogorvoslati lehetőség</h3>
+          <p>Ha Önnek ez nem tetszik, sajnáljuk, de nincs jogorvoslat. Maximum küldhet nekünk sütit (csokisat, diósat, mindet elfogadjuk).</p>
+        </div>
+        <button class="accept-btn" onclick="window.location.href='./success.html'">Elfogadom</button>
+      </div>
+    </div>
+
+    <!-- overlay jelölések -->
+  <div class="overlay">
+    <div class="mark" style="top:30%; right:12%;">
+      ⚠ Ha végigolvasod (vagy legalább átfutod) elfogadás előtt az adatkezelési tájékoztató szövegét, akkor szerintem nem kell részletezni,
+      hogy elhidd, miért egy hamis oldalon vagy. 😀
+    </div>
+
+    <div class="mark" style="top:55%; right:12%;">
+      ℹ Természetesen ez egy abszurd példa, hogy a Tanár Úr küld adathalász üzenetet, de ha egy ismerősötök kér gyanús dolgokat,
+      lehetséges, hogy feltörték a profilját, úgyhogy soha nem árt az óvatosság! A Tanár Úrban pedig azért megbízhattok a továbbiakban. 😉
+    </div>
+  </div>
+    
+    <div class="footer">
+      <div style="opacity:0.95; margin-top:6px; font-size:12px; color:#dbe6e8;">
+        Verzió: 1.40.5 - (2025.07.30.)<br>
+        d003d764d0ee9bb71daa274d6d28627efb292a0f<br>
+        Ez egyébként egy hamis oldal, én nem írnék be semmit.<br>
+        Támogatott böngészők:<br>
+        Google Chrome, Mozilla Firefox, Opera, Microsoft Edge
+      </div>
+    </div>
+  </div>
+</body>
+</html>

