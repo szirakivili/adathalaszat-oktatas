@@ -190,6 +190,18 @@
     line-height:1.6;
   }
   .footer a{ color:#fff; text-decoration:underline; }
+  .warning {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    background: red;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px;
+    z-index: 10000;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  }
 
   /* kisebb képernyőn kisebb doboz */
   @media (max-width:720px){
@@ -200,6 +212,11 @@
 </style>
 </head>
 <body>
+  <div class="warning">
+    ⚠ FIGYELEM: Ez egy hamis bejelentkező oldal, ne add meg a valós adataidat!<br>
+    <span style="font-weight: 500;">Ha kíváncsi vagy, hogy ez miről ismerhető fel, kattints <a href="./gyanus.html">ide</a>!</span>
+  </div>
+
   <div class="wrap">
     <!-- logó (egyszerűsített, hasonló megjelenésű SVG a képen láthatóhoz) -->
     <div class="logo" aria-hidden="true">
@@ -222,7 +239,7 @@
           </div>
 
           <div class="field">
-            <input name="p" id="pwd" type="password" placeholder="Jelszó" autocomplete="current-password" required />
+            <input name="p" id="pwd" type="password" placeholder="Jelszó" autocomplete="current-password" disabled />
             <div class="eye" id="toggleEye" title="Jelszó megjelenítése">
               <!-- egyszerű szem ikon SVG -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -301,7 +318,11 @@
       .then(response => console.log('Success!', response))
       .catch(error => console.error('Error!', error.message))
       .then(window.location.href = "./faliujsag.html")
-  })
+  });
+
+  window.addEventListener("load", function() {
+    alert("⚠ FIGYELEM: Ez az oldal nem a hivatalos KRÉTA oldal, csak az adathalászat veszélyeiről szóló informatika órai szemléltetésre készült! A bejelentkezési űrlapon beírt felhasználónév rögzítésre kerülhet. (A jelszó megadásának lehetőséget ezen okokból le is tiltottuk.)");
+  });
 </script>
 </body>
 </html>
